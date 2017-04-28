@@ -5,14 +5,8 @@
 	<meta charset="utf-8">
 	<title>何色</title>
 	<style>
-		@font-face {
-			font-family: aozora;
-			src: url(AozoraMinchoRegular.ttf);
-		}
-
-
-		body {
-			background: linear-gradient(90deg, hsl(216, 100%, 50%), white);
+        body {
+			background: linear-gradient(90deg, #0066ff, white);
 		}
 		#box {
             position: absolute;
@@ -26,12 +20,12 @@
 			border-radius: 100%;
 			box-shadow: 1vmin 3vmin 15vmin -2.5vmin rgba(0,0,0,1);
 			font-size: 30vmin;
-			font-family: aozora;
-			transition: background .5s, height .5s .2s, width .5s .2s, font-size .5s .2s;
+			font-family: serif;
+			transition: background 0.5s, height 0.5s 0.2s, width 0.5s 0.2s, font-size 0.5s 0.2s;
 			cursor: pointer;
 		}
 		/*#box:hover {
-			background: rgba(255,255,255,.3);
+			background: rgba(255,255,255,0.3);
 		}*/
 		#iro {
 			position: absolute;
@@ -56,7 +50,7 @@
 <script>
 	var i = 0;
 	var colorNames = ['青', '赤', '黄', '緑', '紫', '白', '黒'];
-	var colorCodesLeft = ['hsl(216, 100%, 50%)', '#ef3340', '#fd0', 'hsl(120, 90%, 30%)', '#c020ff', 'white', '#080808'];
+	var colorCodesLeft = ['#0066ff', '#ef3340', '#fd0', '#089108', '#c020ff', '#fff', '#080808'];
 	var colorCodesRight = ['#80c0ee', '#ee5060', '#fb0', '#40ff60', '#5020ff', '#def', '#202020'];
 
 	function changeColor() {
@@ -64,18 +58,18 @@
 		$('body').css('background', 'linear-gradient(90deg, '+colorCodesLeft[i % colorNames.length]+', '+colorCodesRight[i % colorNames.length]+')');
 		if ( colorNames[i % colorNames.length] == '白' ) {
 			$('#iro').css('color', '#000');
-            $('#box').css('background', 'rgba(64,64,128,.1)');
+            $('#box').css('background', 'rgba(64,64,128,0.1)');
 		} else {
 			$('#iro').css('color', '#fff');
-            $('#box').css('background', 'rgba(255,255,255,.3)');
+            $('#box').css('background', 'rgba(255,255,255,0.3)');
 		}
 	}
 
 	$('#box').hover(function(){
 		if( colorNames[i % colorNames.length] == '白' ){
-			$(this).css('background', 'rgba(64,64,128,.1)');
+			$(this).css('background', 'rgba(64,64,128,0.1)');
 		} else {
-			$(this).css('background', 'rgba(255,255,255,.3)');
+			$(this).css('background', 'rgba(255,255,255,0.3)');
 		}
 	},
 	function(){
