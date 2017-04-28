@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<meta charset="utf-8">
+	<title>何色</title>
+	<style>
+		@font-face {
+			font-family: aozora;
+			src: url(AozoraMinchoRegular.ttf);
+		}
+
+
+		body {
+			background: linear-gradient(90deg, hsl(216, 100%, 50%), white);
+		}
+		#box {
+            position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			height: 45vmin;
+			width: 45vmin;
+			background: rgba(255,255,255,0);
+			color: white;
+			border-radius: 100%;
+			box-shadow: 1vmin 3vmin 15vmin -2.5vmin rgba(0,0,0,1);
+			font-size: 30vmin;
+			font-family: aozora;
+			transition: background .5s, height .5s .2s, width .5s .2s, font-size .5s .2s;
+			cursor: pointer;
+		}
+		/*#box:hover {
+			background: rgba(255,255,255,.3);
+		}*/
+		#iro {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id='box'>
+<div id='iro'></div>
+</div>
+
+<script>
+	var i = 0;
+	var colorNames = ['青', '赤', '黄', '緑', '紫', '白', '黒'];
+	var colorCodesLeft = ['hsl(216, 100%, 50%)', '#ef3340', '#fd0', 'hsl(120, 90%, 30%)', '#c020ff', 'white', '#080808'];
+	var colorCodesRight = ['#80c0ee', '#ee5060', '#fb0', '#40ff60', '#5020ff', '#def', '#202020'];
+
+	function changeColor() {
+		document.getElementById('iro').innerHTML = colorNames[i % colorNames.length];
+		$('body').css('background', 'linear-gradient(90deg, '+colorCodesLeft[i % colorNames.length]+', '+colorCodesRight[i % colorNames.length]+')');
+		if ( colorNames[i % colorNames.length] == '白' ) {
+			$('#iro').css('color', '#000');
+            $('#box').css('background', 'rgba(64,64,128,.1)');
+		} else {
+			$('#iro').css('color', '#fff');
+            $('#box').css('background', 'rgba(255,255,255,.3)');
+		}
+	}
+
+	$('#box').hover(function(){
+		if( colorNames[i % colorNames.length] == '白' ){
+			$(this).css('background', 'rgba(64,64,128,.1)');
+		} else {
+			$(this).css('background', 'rgba(255,255,255,.3)');
+		}
+	},
+	function(){
+		if( colorNames[i % colorNames.length] == '白' ){
+			$(this).css('background', 'rgba(64,64,128,0)');
+		} else {
+			$(this).css('background', 'rgba(255,255,255,0)');
+		}
+	});
+
+	$('#box').click( function() {
+		i++;
+		changeColor();
+	});
+
+	changeColor();
+    $('#box').css('background', 'rgba(255,255,255,0)');
+</script>
+
+</body>
+</html>
